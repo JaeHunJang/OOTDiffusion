@@ -3,3 +3,8 @@ __pycache__/
 .vscode/
 *.pyc
 .uuid
+/checkpoints
+/run/images_output
+/.idea
+/model
+/images
