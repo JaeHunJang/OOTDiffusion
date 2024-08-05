@@ -53,6 +53,7 @@ python run_ootd.py --model_path <model-image-path> --cloth_path <cloth-image-pat
 ```sh
 cd OOTDiffusion/run
 python run_ootd.py --model_path <model-image-path> --cloth_path <cloth-image-path> --model_type dc --category 2 --scale 2.0 --sample 4
+python run_ootd.py --model_path ../images/ho.jpg --cloth_path ../images/zipup.jpg --model_type dc --category 2 --scale 2.0 --sample 4
 ```
 
 ## Citation
@@ -69,9 +70,9 @@ python run_ootd.py --model_path <model-image-path> --cloth_path <cloth-image-pat
 
 [![Star History Chart](https://api.star-history.com/svg?repos=levihsu/OOTDiffusion&type=Date)](https://star-history.com/#levihsu/OOTDiffusion&Date)
 
-## TODO List
-- [x] Paper
-- [x] Gradio demo
-- [x] Inference code
-- [x] Model weights
-- [ ] Training code
+
+## CUSTOM API
+```
+cd OOTDiffusion/run
+uvicorn api:app --host 0.0.0.0 --port 8000
+```
