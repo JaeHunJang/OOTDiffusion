@@ -4,6 +4,8 @@ from PIL import Image
 from utils_ootd import get_mask_location
 import requests
 from io import BytesIO
+# import os
+# os.environ['CUDA_VISIBLE_DEIVCES']='9'
 
 PROJECT_ROOT = Path(__file__).absolute().parents[1].absolute()
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -24,11 +26,11 @@ parser.add_argument('--scale', type=float, default=2.0, required=False)
 parser.add_argument('--step', type=int, default=20, required=False)
 parser.add_argument('--sample', type=int, default=4, required=False)
 parser.add_argument('--seed', type=int, default=-1, required=False)
-parser.add_argument('--outputDir', type=str, required=True)
+parser.add_argument('--output_dir', type=str, required=True)
 
 args = parser.parse_args()
 
-output_dir = Path(args.outputDir)
+output_dir = Path(args.output_dir)
 output_dir.mkdir(parents=True, exist_ok=True)
 
 openpose_model = OpenPose(args.gpu_id)
@@ -54,20 +56,15 @@ elif model_type == "dc":
 else:
     raise ValueError("model_type must be 'hd' or 'dc'!")
 
-def open_image_from_url(url):
-    response = requests.get(url)
-    img = Image.open(BytesIO(response.content))
-    return img
-
 if __name__ == '__main__':
     if model_type == 'hd' and category != 0:
         raise ValueError("model_type 'hd' requires category == 0 (upperbody)!")
 
     # 파일 열기
-    # cloth_img = Image.open(cloth_path).resize((768, 1024))
-    # model_img = Image.open(model_path).resize((768, 1024))
-    cloth_img = open_image_from_url(cloth_path).resize((768, 1024))
-    model_img = open_image_from_url(model_path).resize((768, 1024))
+    cloth_img = Image.open(cloth_path).resize((768, 1024))
+    model_img = Image.open(model_path).resize((768, 1024))
+    # cloth_img = open_image_from_url(cloth_path).resize((768, 1024))
+    # model_img = open_image_from_url(model_path).resize((768, 1024))
     keypoints = openpose_model(model_img.resize((384, 512)))
     model_parse, _ = parsing_model(model_img.resize((384, 512)))
 

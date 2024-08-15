@@ -53,7 +53,7 @@ python run_ootd.py --model_path <model-image-path> --cloth_path <cloth-image-pat
 ```sh
 cd OOTDiffusion/run
 python run_ootd.py --model_path <model-image-path> --cloth_path <cloth-image-path> --model_type dc --category 2 --scale 2.0 --sample 4
-python run_ootd.py --model_path ../images/ho.jpg --cloth_path ../images/zipup.jpg --model_type dc --category 2 --scale 2.0 --sample 4
+python run_ootd.py --model_path ../images/jjh.jpg --cloth_path ../images/zipup.jpg --model_type dc --category 0 --scale 2.0 --sample 4
 ```
 
 ## Citation
